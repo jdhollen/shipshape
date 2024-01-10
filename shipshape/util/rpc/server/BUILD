@@ -1,5 +1,6 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 
 # Copyright 2015 Google Inc. All rights reserved.
 #
@@ -19,8 +20,12 @@ package(default_visibility = ["//shipshape:default_visibility"])
 
 proto_library(
     name = "test_proto",
-    src = "test.proto",
-    gen_go = 1,
+    srcs = ["test.proto"],
+)
+
+go_proto_library(
+    name = "test_go_proto",
+    proto = ":test_proto",
 )
 
 go_library(
@@ -41,6 +46,6 @@ go_test(
     srcs = ["krpc_test.go"],
     embed = [":server"],
     deps = [
-        "@com_github_google_shipshape//shipshape/util/rpc/server/test_proto:go_default_library",
+        "@com_github_google_shipshape//shipshape/util/rpc/server:test_go_proto",
     ],
 )

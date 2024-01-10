@@ -1,3 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,8 +15,6 @@
 # limitations under the License.
 
 package(default_visibility = ["//shipshape:default_visibility"])
-
-load("/tools/build_rules/go", "go_library", "go_test")
 
 go_library(
     name = "wordcount",

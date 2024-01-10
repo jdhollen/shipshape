@@ -9,3 +9,5 @@ go_library(
     importpath = "github.com/google/shipshape/shipshape/analyzers/govet/testdata",
     visibility = ["//visibility:public"],
 )
+
+exports_files(["has_errors.go", "no_errors.go"],     visibility = ["//visibility:public"])

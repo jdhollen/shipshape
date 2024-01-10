@@ -32,8 +32,8 @@ go_test(
     name = "govet_test",
     srcs = ["govet_analyzer_test.go"],
     data = [
-        ":testdata/has_errors.go",
-        ":testdata/no_errors.go",
+        "//shipshape/shipshape/analyzers/govet/testdata/has_errors.go",
+        "//shipshape/shipshape/analyzers/govet/testdata/no_errors.go",
         "//tools/go",
         "//tools/go:GOROOT",
     ],

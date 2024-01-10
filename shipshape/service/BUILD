@@ -27,10 +27,9 @@ go_binary(
         "//shipshape/analyzers/pylint",
         "//shipshape/analyzers/wordcount",
         "//shipshape/api",
-        "//shipshape/proto:note_proto_go",
-        "//shipshape/proto:shipshape_context_proto_go",
+        "//shipshape/proto:note_go_proto",
+        "//shipshape/proto:shipshape_context_go_proto",
         "//shipshape/util/rpc/server",
-        "//third_party/go:protobuf",
     ],
 )
 
@@ -61,10 +60,9 @@ go_binary(
     srcs = ["shipshape.go"],
     deps = [
         ":service",
-        "//shipshape/proto:shipshape_rpc_proto_go",
+        "//shipshape/proto:shipshape_rpc_go_proto",
         "//shipshape/util/rpc/server",
         "//shipshape/util/strings",
-        "//third_party/go:protobuf",
     ],
 )
 

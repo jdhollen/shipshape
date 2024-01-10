@@ -12,20 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-docker_build(
-    name = "phipshape",
-    src = "Dockerfile",
-    data = [
-        "analyze.sh",
-        "async.js",
-        "conduit.js",
-        "git-credential-gerrit.sh",
-        "gitconfig",
-        "launch.sh",
-        "server.js",
-        "//shipshape/cli:shipshape",
-    ],
-    image_name = "phipshape",
-    tags = ["manual"],
-    use_cache = True,
-)
+# XXX: 
+# docker_build(
+#     name = "phipshape",
+#     src = "Dockerfile",
+#     data = [
+#         "analyze.sh",
+#         "async.js",
+#         "conduit.js",
+#         "git-credential-gerrit.sh",
+#         "gitconfig",
+#         "launch.sh",
+#         "server.js",
+#         "//shipshape/cli:shipshape",
+#     ],
+#     image_name = "phipshape",
+#     tags = ["manual"],
+#     use_cache = True,
+# )

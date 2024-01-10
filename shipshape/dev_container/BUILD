@@ -12,11 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-docker_build(
-    name = "dev_container",
-    src = "Dockerfile",
-    data = ["startup.sh"],
-    image_name = "beta.gcr.io/shipshape_releases/dev_container:local",
-    tags = ["manual"],
-    use_cache = True,
-)
+# XXX: 
+# docker_build(
+#     name = "dev_container",
+#     src = "Dockerfile",
+#     data = ["startup.sh"],
+#     image_name = "beta.gcr.io/shipshape_releases/dev_container:local",
+#     tags = ["manual"],
+#     use_cache = True,
+# )

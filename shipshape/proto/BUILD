@@ -116,7 +116,7 @@ proto_library(
 )
 
 go_proto_library(
-    name = "shipshape_reporter_proto_go_proto",
+    name = "shipshape_reporter_go_proto",
     importpath = "github.com/google/shipshape/shipshape/proto/shipshape_reporter_proto",
     proto = ":shipshape_reporter_proto",
     deps = [

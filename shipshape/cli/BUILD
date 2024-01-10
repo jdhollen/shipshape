@@ -21,8 +21,8 @@ go_binary(
     srcs = ["shipshape.go"],
     deps = [
         ":cli",
-        "//shipshape/proto:note_proto_go",
-        "//shipshape/proto:shipshape_rpc_proto_go",
+        "//shipshape/proto:note_go_proto",
+        "//shipshape/proto:shipshape_rpc_go_proto",
         "//shipshape/util/defaults",
     ],
 )
