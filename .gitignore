@@ -22,3 +22,5 @@ MANIFEST-*
 
 # Misc
 node_modules
+MODULE.bazel
+MODULE.bazel.lock
