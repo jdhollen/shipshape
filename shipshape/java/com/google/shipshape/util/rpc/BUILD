@@ -31,7 +31,6 @@ java_library(
         "//third_party/gson",
         "//third_party/gson:proto",
         "//third_party/guava",
-        "//third_party/proto:protobuf_java",
     ],
 )
 

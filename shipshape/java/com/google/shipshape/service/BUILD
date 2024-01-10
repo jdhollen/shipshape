@@ -59,7 +59,6 @@ java_binary(
         "//third_party/jsr305_annotations:jsr305",
         "//third_party/kythe/java/com/google/devtools/kythe/common",
         "//third_party/openjdk:tools_jar",
-        "//third_party/proto:protobuf_java",
     ],
 )
 
@@ -86,6 +85,5 @@ java_binary(
         "//third_party/kythe/proto:analysis_proto_java",
         "//third_party/kythe/proto:storage_proto_java",
         "//third_party/openjdk:tools_jar",
-        "//third_party/proto:protobuf_java",
     ],
 )

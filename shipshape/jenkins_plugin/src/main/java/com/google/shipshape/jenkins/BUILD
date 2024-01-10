@@ -35,6 +35,5 @@ java_library(
         "//third_party/jenkins:remoting",
         "//third_party/jenkins:servlet-api",
         "//third_party/jenkins:stapler",
-        "//third_party/proto:protobuf_java",
     ],
 )

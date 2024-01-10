@@ -32,7 +32,6 @@ java_binary(
         "//shipshape/proto:shipshape_context_proto_java",
         "//shipshape/proto:shipshape_rpc_proto_java",
         "//shipshape/proto:source_context_proto_java",
-        "//third_party/proto:protobuf_java",
     ],
 )
 

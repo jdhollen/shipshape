@@ -27,7 +27,6 @@ java_library(
         "//third_party/guava",
         "//third_party/kythe/java/com/google/devtools/kythe/common",
         "//third_party/kythe/proto:analysis_proto_java",
-        "//third_party/proto:protobuf_java",
     ],
 )
 

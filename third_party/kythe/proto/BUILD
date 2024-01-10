@@ -1,4 +1,5 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 
 # Copyright 2015 Google Inc. All rights reserved.
 #
@@ -21,24 +22,55 @@ licenses(["notice"])  # Apache 2.0
 proto_library(
     name = "any_proto",
     src = "any.proto",
-    gen_go = 1,
-    gen_java = 1,
+)
+
+go_proto_library(
+    name = "any_go_proto",
+    importpath = "github.com/google/shipshape/third_party/kythe/proto/any_proto",
+    proto = ":any_proto",
+)
+
+java_proto_library(
+    name = "any_proto_java",
+    deps = [":any_proto"],
 )
 
 proto_library(
     name = "storage_proto",
     src = "storage.proto",
-    gen_go = 1,
-    gen_java = 1,
+)
+
+go_proto_library(
+    name = "storage_go_proto",
+    importpath = "github.com/google/shipshape/third_party/kythe/proto/storage_proto",
+    proto = ":storage_proto",
+)
+
+java_proto_library(
+    name = "storage_proto_java",
+    deps = [":storage_proto"],
 )
 
 proto_library(
     name = "analysis_proto",
     src = "analysis.proto",
-    gen_go = 1,
-    gen_java = 1,
     deps = [
         ":any_proto",
         ":storage_proto",
     ],
+)
+
+go_proto_library(
+    name = "analysis_go_proto",
+    importpath = "github.com/google/shipshape/third_party/kythe/proto/analysis_proto",
+    proto = ":shipshape_reporter_proto",
+    deps = [
+        ":any_go_proto",
+        ":storage_go_proto",
+    ],
+)
+
+java_proto_library(
+    name = "analysis_proto_java",
+    deps = [":analysis_proto"],
 )
