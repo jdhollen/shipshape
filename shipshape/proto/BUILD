@@ -1,4 +1,3 @@
-load("@io_bazel_rules_go//go:def.bzl", "go_library")
 load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 
@@ -56,7 +55,7 @@ go_proto_library(
     deps = [
         ":source_context_go_proto",
         ":textrange_go_proto",
-    ]
+    ],
 )
 
 proto_library(
@@ -64,7 +63,7 @@ proto_library(
     srcs = ["shipshape_context.proto"],
     deps = [
         ":source_context_proto",
-#        "//third_party/kythe/proto:analysis_proto",
+        #        "//third_party/kythe/proto:analysis_proto",
     ],
 )
 
@@ -74,7 +73,7 @@ go_proto_library(
     proto = ":shipshape_context_proto",
     deps = [
         ":source_context_go_proto",
-    ]
+    ],
 )
 
 proto_library(
@@ -93,7 +92,7 @@ go_proto_library(
     deps = [
         ":note_go_proto",
         ":shipshape_context_go_proto",
-    ]
+    ],
 )
 
 proto_library(

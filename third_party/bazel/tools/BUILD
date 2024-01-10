@@ -25,9 +25,9 @@ exports_files(["test_sharding_compliant"])
 filegroup(
     name = "srcs",
     srcs = glob(["**"]) + [
-        "//tools/jdk:srcs",
-        "//tools/genrule:srcs",
         "//tools/cpp:srcs",
+        "//tools/genrule:srcs",
+        "//tools/jdk:srcs",
         "//tools/test:srcs",
     ],
 )

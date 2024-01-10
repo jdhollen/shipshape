@@ -12,18 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("/tools/build_rules/docker", "docker_build")
-
 package(default_visibility = ["//shipshape:default_visibility"])
 
 docker_build(
     name = "android_lint",
     src = "Dockerfile",
-    image_name = "beta.gcr.io/shipshape_releases/android_lint:local",
-    tags = ["manual"],
-    use_cache = True,
     data = [
         "endpoint.sh",
         "//shipshape/androidlint_analyzer/androidlint:android_lint_service",
     ],
+    image_name = "beta.gcr.io/shipshape_releases/android_lint:local",
+    tags = ["manual"],
+    use_cache = True,
 )

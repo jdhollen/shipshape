@@ -12,16 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("/tools/build_rules/docker", "docker_build")
-
 docker_build(
     name = "phipshape",
     src = "Dockerfile",
-    image_name = "phipshape",
-    tags = ["manual"],
-    use_cache = True,
     data = [
-       "//shipshape/cli:shipshape",
         "analyze.sh",
         "async.js",
         "conduit.js",
@@ -29,6 +23,9 @@ docker_build(
         "gitconfig",
         "launch.sh",
         "server.js",
+        "//shipshape/cli:shipshape",
     ],
+    image_name = "phipshape",
+    tags = ["manual"],
+    use_cache = True,
 )
-

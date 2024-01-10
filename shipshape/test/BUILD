@@ -1,3 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,21 +16,9 @@
 
 package(default_visibility = ["//shipshape:default_visibility"])
 
-load("/tools/build_rules/go", "go_binary")
-
 go_binary(
     name = "test_shipshape_client",
-    srcs = [
-        "test_shipshape_client.go",
-    ],
-    deps = [
-        "//shipshape/proto:shipshape_context_proto_go",
-        "//shipshape/proto:shipshape_rpc_proto_go",
-        "//shipshape/proto:source_context_proto_go",
-        "//shipshape/util/file:file",
-        "//shipshape/util/rpc/client:client",
-        "//third_party/go:protobuf",
-    ],
+    embed = [":test_lib"],
 )
 
 java_binary(
@@ -36,6 +26,7 @@ java_binary(
     srcs = [
         "TestRequestViaStream.java",
     ],
+    main_class = "test.TestRequestViaStream",
     deps = [
         "//shipshape/proto:note_proto_java",
         "//shipshape/proto:shipshape_context_proto_java",
@@ -43,5 +34,18 @@ java_binary(
         "//shipshape/proto:source_context_proto_java",
         "//third_party/proto:protobuf_java",
     ],
-    main_class = "test.TestRequestViaStream",
+)
+
+go_library(
+    name = "test_lib",
+    srcs = ["test_shipshape_client.go"],
+    importpath = "github.com/google/shipshape/shipshape/test",
+    deps = [
+        "//shipshape/proto:shipshape_context_go_proto",
+        "//shipshape/proto:shipshape_rpc_go_proto",
+        "//shipshape/proto:source_context_go_proto",
+        "//shipshape/util/file",
+        "//shipshape/util/rpc/client",
+        "@com_github_golang_protobuf//proto:go_default_library",
+    ],
 )

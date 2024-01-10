@@ -1,3 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,12 +18,17 @@ package(default_visibility = ["//visibility:public"])
 
 licenses(["notice"])  # BSD
 
-load("/tools/build_rules/go", "go_library")
-
 go_library(
     name = "go-glog",
     srcs = [
         "glog.go",
         "glog_file.go",
     ],
+    importpath = "github.com/google/shipshape/third_party/go-glog",
+)
+
+go_test(
+    name = "go-glog_test",
+    srcs = ["glog_test.go"],
+    embed = [":go-glog"],
 )

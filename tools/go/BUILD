@@ -1,3 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,13 +14,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("/tools/build_rules/go", "go_binary")
-
 package(default_visibility = ["//visibility:public"])
 
 exports_files(["go"])
 
 go_binary(
     name = "testmain_generator",
+    embed = [":go_lib"],
+)
+
+go_library(
+    name = "go_lib",
     srcs = ["testmain_generator.go"],
+    importpath = "github.com/google/shipshape/tools/go",
 )

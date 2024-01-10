@@ -1,3 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,24 +16,20 @@
 
 package(default_visibility = ["//shipshape:default_visibility"])
 
-load("/tools/build_rules/go", "go_binary", "go_library", "go_test")
-
 go_binary(
     name = "go_dispatcher",
-    srcs = [
-        "go_dispatcher.go",
-    ],
+    srcs = ["go_dispatcher.go"],
     deps = [
-        "//shipshape/analyzers/codealert:codealert",
-        "//shipshape/analyzers/govet:govet",
-        "//shipshape/analyzers/jshint:jshint",
-        "//shipshape/analyzers/postmessage:postmessage",
-        "//shipshape/analyzers/pylint:pylint",
-        "//shipshape/analyzers/wordcount:wordcount",
-        "//shipshape/api:api",
+        "//shipshape/analyzers/codealert",
+        "//shipshape/analyzers/govet",
+        "//shipshape/analyzers/jshint",
+        "//shipshape/analyzers/postmessage",
+        "//shipshape/analyzers/pylint",
+        "//shipshape/analyzers/wordcount",
+        "//shipshape/api",
         "//shipshape/proto:note_proto_go",
         "//shipshape/proto:shipshape_context_proto_go",
-        "//shipshape/util/rpc/server:server",
+        "//shipshape/util/rpc/server",
         "//third_party/go:protobuf",
     ],
 )
@@ -42,33 +40,30 @@ go_library(
         "config.go",
         "driver.go",
     ],
+    importpath = "github.com/google/shipshape/shipshape/service",
     deps = [
-        "//shipshape/proto:note_proto_go",
-        "//shipshape/proto:shipshape_config_proto_go",
-        "//shipshape/proto:shipshape_context_proto_go",
-        "//shipshape/proto:shipshape_rpc_proto_go",
-        "//shipshape/util/defaults:defaults",
-        "//shipshape/util/file:file",
-        "//shipshape/util/rpc/client:client",
-        "//shipshape/util/rpc/server:server",
-        "//shipshape/util/strings:strings",
-        "//third_party/go:protobuf",
-        "//third_party/go:go-yaml",
-        "//third_party/kythe/go/platform/kindex:kindex",
-        "//third_party/kythe/proto:analysis_proto_go",
+        "//shipshape/proto:note_go_proto",
+        "//shipshape/proto:shipshape_config_go_proto",
+        "//shipshape/proto:shipshape_context_go_proto",
+        "//shipshape/proto:shipshape_rpc_go_proto",
+        "//shipshape/util/defaults",
+        "//shipshape/util/file",
+        "//shipshape/util/rpc/client",
+        "//shipshape/util/rpc/server",
+        "//shipshape/util/strings",
+        "@com_github_golang_protobuf//proto:go_default_library",
+        "@in_gopkg_yaml_v2//:go_default_library",
     ],
 )
 
 go_binary(
     name = "shipshape",
-    srcs = [
-        "shipshape.go",
-    ],
+    srcs = ["shipshape.go"],
     deps = [
         ":service",
         "//shipshape/proto:shipshape_rpc_proto_go",
-        "//shipshape/util/rpc/server:server",
-        "//shipshape/util/strings:strings",
+        "//shipshape/util/rpc/server",
+        "//shipshape/util/strings",
         "//third_party/go:protobuf",
     ],
 )
@@ -79,14 +74,15 @@ go_test(
         "config_test.go",
         "driver_test.go",
     ],
-    deps = [
-        "//shipshape/proto:note_proto_go",
-        "//shipshape/proto:shipshape_context_proto_go",
-        "//shipshape/proto:shipshape_rpc_proto_go",
-        "//shipshape/util/rpc/server:server",
-        "//shipshape/util/test:test",
-        "//third_party/go:protobuf",
-    ],
     data = glob(["testdata/service_test/**/*"]),
-    library = ":service",
+    embed = [":service"],
+    deps = [
+        "//shipshape/proto:note_go_proto",
+        "//shipshape/proto:shipshape_context_go_proto",
+        "//shipshape/proto:shipshape_rpc_go_proto",
+        "//shipshape/util/rpc/server",
+        "//shipshape/util/strings",
+        "//shipshape/util/test",
+        "@com_github_golang_protobuf//proto:go_default_library",
+    ],
 )

@@ -1,3 +1,6 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,9 +17,6 @@
 
 package(default_visibility = ["//shipshape:default_visibility"])
 
-load("/tools/build_rules/genproto", "proto_library")
-load("/tools/build_rules/go", "go_library", "go_test")
-
 proto_library(
     name = "test_proto",
     src = "test.proto",
@@ -29,20 +29,18 @@ go_library(
         "endpoint.go",
         "service.go",
     ],
+    importpath = "github.com/google/shipshape/shipshape/util/rpc/server",
     deps = [
-        ":test_proto_go",
-        "//shipshape/util/httpencoding:httpencoding",
-        "//shipshape/util/rpc/protocol:protocol",
+        "//shipshape/util/httpencoding",
+        "//shipshape/util/rpc/protocol",
     ],
 )
 
 go_test(
     name = "server_test",
-    srcs = [
-        "krpc_test.go",
-    ],
+    srcs = ["krpc_test.go"],
+    embed = [":server"],
     deps = [
-        ":test_proto_go",
+        "@com_github_google_shipshape//shipshape/util/rpc/server/test_proto:go_default_library",
     ],
-    library = ":server",
 )

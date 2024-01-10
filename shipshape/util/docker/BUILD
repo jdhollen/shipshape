@@ -1,3 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,22 +16,17 @@
 
 package(default_visibility = ["//shipshape:default_visibility"])
 
-load("/tools/build_rules/go", "go_library", "go_test")
-
 go_library(
     name = "docker",
-    srcs = [
-        "docker.go",
-    ],
+    srcs = ["docker.go"],
+    importpath = "github.com/google/shipshape/shipshape/util/docker",
     deps = [
-        "//third_party/go-glog:go-glog",
+        "//third_party/go-glog",
     ],
 )
 
 go_test(
     name = "docker_test",
-    srcs = [
-        "docker_test.go",
-    ],
-    library = ":docker",
+    srcs = ["docker_test.go"],
+    embed = [":docker"],
 )

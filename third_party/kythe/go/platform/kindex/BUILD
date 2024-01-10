@@ -1,3 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,17 +18,25 @@ package(default_visibility = ["//visibility:public"])
 
 licenses(["notice"])  # Apache 2.0
 
-load("/tools/build_rules/go", "go_library")
-
 go_library(
     name = "kindex",
-    srcs = [
-        "kindex.go",
-    ],
+    srcs = ["kindex.go"],
+    importpath = "github.com/google/shipshape/third_party/kythe/go/platform/kindex",
     deps = [
-        "//third_party/go:protobuf",
-        "//third_party/kythe/go/platform/analysis:analysis",
-        "//third_party/kythe/go/platform/delimited:delimited",
-        "//third_party/kythe/proto:analysis_proto_go",
+        "//third_party/kythe/go/platform/analysis",
+        "//third_party/kythe/go/platform/delimited",
+        "@com_github_golang_protobuf//proto:go_default_library",
+        "@com_github_google_shipshape//third_party/kythe/proto/analysis_proto:go_default_library",
+    ],
+)
+
+go_test(
+    name = "kindex_test",
+    srcs = ["kindex_test.go"],
+    embed = [":kindex"],
+    deps = [
+        "@com_github_golang_protobuf//proto:go_default_library",
+        "@com_github_google_shipshape//third_party/kythe/proto/analysis_proto:go_default_library",
+        "@com_github_google_shipshape//third_party/kythe/proto/storage_proto:go_default_library",
     ],
 )

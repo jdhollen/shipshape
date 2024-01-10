@@ -1,3 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,34 +16,29 @@
 
 package(default_visibility = ["//shipshape:default_visibility"])
 
-load("/tools/build_rules/go", "go_library", "go_test")
-
 go_library(
     name = "govet",
-    srcs = [
-        "govet_analyzer.go",
-    ],
+    srcs = ["govet_analyzer.go"],
+    importpath = "github.com/google/shipshape/shipshape/analyzers/govet",
     deps = [
-        "//shipshape/proto:note_proto_go",
-        "//shipshape/proto:shipshape_context_proto_go",
-        "//shipshape/proto:textrange_proto_go",
-        "//third_party/go:protobuf",
+        "//shipshape/proto:note_go_proto",
+        "//shipshape/proto:shipshape_context_go_proto",
+        "//shipshape/proto:textrange_go_proto",
+        "@com_github_golang_protobuf//proto:go_default_library",
     ],
 )
 
 go_test(
     name = "govet_test",
-    srcs = [
-        "govet_analyzer_test.go",
-    ],
-    deps = [
-        "//shipshape/proto:shipshape_context_proto_go",
-    ],
+    srcs = ["govet_analyzer_test.go"],
     data = [
         ":testdata/has_errors.go",
         ":testdata/no_errors.go",
         "//tools/go",
-        "//tools/go:GOROOT"
+        "//tools/go:GOROOT",
     ],
-    library = ":govet",
+    embed = [":govet"],
+    deps = [
+        "//shipshape/proto:shipshape_context_go_proto",
+    ],
 )

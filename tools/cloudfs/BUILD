@@ -1,15 +1,15 @@
-package(default_visibility = ["//shipshape:default_visibility"])
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
 
-load("/tools/build_rules/go", "go_binary")
+package(default_visibility = ["//shipshape:default_visibility"])
 
 go_binary(
     name = "copy_cloud_repo",
-    srcs = [
-        "copy_cloud_repo.go",
-    ],
-    deps = [
-        "//shipshape/util/file:file",
-        "//shipshape/util/rpc/client:client",
-        "//third_party/go:protobuf",
-    ],
+    embed = [":cloudfs_lib"],
+)
+
+go_library(
+    name = "cloudfs_lib",
+    srcs = ["copy_cloud_repo.go"],
+    importpath = "github.com/google/shipshape/tools/cloudfs",
+    deps = ["//shipshape/util/file"],
 )

@@ -23,6 +23,6 @@ java_library(
         "PathUtil.java",
     ],
     deps = [
-        "//third_party/guava:guava",
+        "//third_party/guava",
     ],
 )

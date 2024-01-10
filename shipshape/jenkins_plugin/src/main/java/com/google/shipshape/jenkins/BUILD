@@ -26,7 +26,7 @@ java_library(
         "//shipshape/proto:shipshape_rpc_proto_java",
         "//shipshape/proto:source_context_proto_java",
         "//shipshape/proto:textrange_proto_java",
-        "//third_party/guava:guava",
+        "//third_party/guava",
         "//third_party/jenkins:access-modifier-annotation",
         "//third_party/jenkins:bridge-method-annotation",
         "//third_party/jenkins:bytecode-compatibility-transformer",

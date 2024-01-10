@@ -22,6 +22,7 @@ java_import(
         "gson-2.3-SNAPSHOT.jar",
     ],
 )
+
 java_import(
     name = "proto",
     jars = [

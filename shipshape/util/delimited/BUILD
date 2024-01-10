@@ -1,3 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,22 +16,17 @@
 
 package(default_visibility = ["//shipshape:default_visibility"])
 
-load("/tools/build_rules/go", "go_library", "go_test")
-
 go_library(
     name = "delimited",
-    srcs = [
-        "delimited.go",
-    ],
+    srcs = ["delimited.go"],
+    importpath = "github.com/google/shipshape/shipshape/util/delimited",
     deps = [
-        "//third_party/go:protobuf",
+        "@com_github_golang_protobuf//proto:go_default_library",
     ],
 )
 
 go_test(
     name = "delimited_test",
-    srcs = [
-        "delimited_test.go",
-    ],
-    library = ":delimited",
+    srcs = ["delimited_test.go"],
+    embed = [":delimited"],
 )

@@ -1,3 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,14 +16,14 @@
 
 package(default_visibility = ["//shipshape:default_visibility"])
 
-load("/tools/build_rules/go", "go_binary")
-
 go_binary(
     name = "unwrap_results",
-    srcs = [
-        "unwrap_results.go",
-    ],
-    deps = [
-        "//shipshape/util/rpc/client:client",
-    ],
+    embed = [":tools_lib"],
+)
+
+go_library(
+    name = "tools_lib",
+    srcs = ["unwrap_results.go"],
+    importpath = "github.com/google/shipshape/shipshape/util/rpc/tools",
+    deps = ["//shipshape/util/rpc/client"],
 )

@@ -12,23 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("/tools/build_rules/docker", "docker_build")
-
 package(default_visibility = ["//shipshape:default_visibility"])
 
 docker_build(
     name = "service",
     src = "Dockerfile",
-    image_name = "beta.gcr.io/shipshape_releases/service:local",
-    tags = ["manual"],
-    use_cache = True,
     data = [
+        "endpoint.sh",
         "//shipshape/java/com/google/shipshape/service:java_dispatcher_deploy.jar",
         "//shipshape/java/com/google/shipshape/service:javac_dispatcher_deploy.jar",
         "//shipshape/service:go_dispatcher",
         "//shipshape/service:shipshape",
-        "endpoint.sh",
         "//third_party/checkstyle",
     ],
+    image_name = "beta.gcr.io/shipshape_releases/service:local",
+    tags = ["manual"],
+    use_cache = True,
 )
-

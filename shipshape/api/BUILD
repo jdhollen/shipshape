@@ -1,3 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,34 +16,32 @@
 
 package(default_visibility = ["//shipshape:default_visibility"])
 
-load("/tools/build_rules/go", "go_library", "go_test")
-
 go_library(
     name = "api",
     srcs = [
         "analyzer.go",
         "dispatcher.go",
     ],
+    importpath = "github.com/google/shipshape/shipshape/api",
     deps = [
-        "//shipshape/proto:note_proto_go",
-        "//shipshape/proto:shipshape_context_proto_go",
-        "//shipshape/proto:shipshape_rpc_proto_go",
-        "//shipshape/util/file:file",
-        "//shipshape/util/rpc/server:server",
-        "//shipshape/util/strings:strings",
-        "//third_party/go:protobuf",
+        "//shipshape/proto:note_go_proto",
+        "//shipshape/proto:shipshape_context_go_proto",
+        "//shipshape/proto:shipshape_rpc_go_proto",
+        "//shipshape/util/file",
+        "//shipshape/util/rpc/server",
+        "//shipshape/util/strings",
+        "@com_github_golang_protobuf//proto:go_default_library",
     ],
 )
+
 go_test(
     name = "api_test",
-    srcs = [
-        "dispatcher_test.go",
-    ],
+    srcs = ["dispatcher_test.go"],
+    embed = [":api"],
     deps = [
-        "//shipshape/proto:note_proto_go",
-        "//shipshape/proto:shipshape_context_proto_go",
-        "//shipshape/proto:shipshape_rpc_proto_go",
-        "//shipshape/util/strings:strings",
+        "//shipshape/proto:note_go_proto",
+        "//shipshape/proto:shipshape_context_go_proto",
+        "//shipshape/proto:shipshape_rpc_go_proto",
+        "//shipshape/util/strings",
     ],
-    library = ":api",
 )

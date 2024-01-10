@@ -1,3 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,18 +16,15 @@
 
 package(default_visibility = ["//visibility:public"])
 
-load("/tools/build_rules/go", "go_library")
-
 go_library(
     name = "file",
     srcs = [
         "cloud_repo_file_utility.go",
         "file_util.go",
     ],
+    importpath = "github.com/google/shipshape/shipshape/util/file",
     deps = [
-        "//shipshape/proto:shipshape_context_proto_go",
-        "//shipshape/proto:shipshape_rpc_proto_go",
-        "//shipshape/proto:source_context_proto_go",
-        "//third_party/go:protobuf",
+        "//shipshape/proto:source_context_go_proto",
+        "@com_github_golang_protobuf//proto:go_default_library",
     ],
 )

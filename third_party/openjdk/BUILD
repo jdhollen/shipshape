@@ -19,7 +19,7 @@ licenses(["restricted"])  # GPL v2 with "Classpath" exception
 filegroup(
     name = "license",
     srcs = [
-        "LICENSE"
+        "LICENSE",
     ],
 )
 

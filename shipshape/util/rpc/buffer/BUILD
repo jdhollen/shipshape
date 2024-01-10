@@ -1,3 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,19 +16,14 @@
 
 package(default_visibility = ["//shipshape:default_visibility"])
 
-load("/tools/build_rules/go", "go_library", "go_test")
-
 go_library(
     name = "buffer",
-    srcs = [
-        "buffer.go",
-    ],
+    srcs = ["buffer.go"],
+    importpath = "github.com/google/shipshape/shipshape/util/rpc/buffer",
 )
 
 go_test(
     name = "buffer_test",
-    srcs = [
-        "buffer_test.go",
-    ],
-    library = ":buffer",
+    srcs = ["buffer_test.go"],
+    embed = [":buffer"],
 )

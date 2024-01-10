@@ -1,3 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,19 +16,14 @@
 
 package(default_visibility = ["//shipshape:default_visibility"])
 
-load("/tools/build_rules/go", "go_library")
-
 go_library(
     name = "pylint",
-    srcs = [
-        "pylint_analyzer.go",
-    ],
+    srcs = ["pylint_analyzer.go"],
+    importpath = "github.com/google/shipshape/shipshape/analyzers/pylint",
     deps = [
-        "//shipshape/api:api",
-        "//shipshape/proto:note_proto_go",
-        "//shipshape/proto:shipshape_context_proto_go",
-        "//shipshape/proto:textrange_proto_go",
-        "//shipshape/util/rpc/client:client",
-        "//third_party/go:protobuf",
+        "//shipshape/proto:note_go_proto",
+        "//shipshape/proto:shipshape_context_go_proto",
+        "//shipshape/proto:textrange_go_proto",
+        "@com_github_golang_protobuf//proto:go_default_library",
     ],
 )

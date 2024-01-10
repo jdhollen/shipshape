@@ -1,23 +1,20 @@
-package(default_visibility = ["//visibility:public"])
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
 
-load("/tools/build_rules/go", "go_library", "go_binary")
+package(default_visibility = ["//visibility:public"])
 
 go_library(
     name = "client",
-    srcs = [
-        "client.go",
-    ],
+    srcs = ["client.go"],
+    importpath = "github.com/google/shipshape/shipshape/util/rpc/client",
     deps = [
-        "//shipshape/util/httpencoding:httpencoding",
-        "//shipshape/util/rpc/protocol:protocol",
+        "//shipshape/util/httpencoding",
+        "//shipshape/util/rpc/protocol",
     ],
 )
 
 go_binary(
     name = "example",
-    srcs = [
-        "example.go",
-    ],
+    srcs = ["example.go"],
     deps = [
         ":client",
     ],

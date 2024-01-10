@@ -12,17 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("/tools/build_rules/docker", "docker_build")
-
 docker_build(
     name = "dind-test",
     src = "Dockerfile",
+    data = [
+        "endpoint.sh",
+        "//shipshape/cli:shipshape",
+    ],
     image_name = "shipshape_dind_test",
     tags = ["manual"],
     use_cache = True,
-    data = [
-        "endpoint.sh",
-        "//shipshape/cli:shipshape"
-    ],
 )
-

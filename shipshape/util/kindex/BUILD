@@ -1,3 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,15 +16,14 @@
 
 package(default_visibility = ["//shipshape:default_visibility"])
 
-load("/tools/build_rules/go", "go_binary")
-
 go_binary(
     name = "kindex_printer",
-    srcs = [
-        "kindex.go"
-      ],
-    deps = [
-        "//third_party/kythe/go/platform/kindex",
-        ],
+    embed = [":kindex_lib"],
+)
 
+go_library(
+    name = "kindex_lib",
+    srcs = ["kindex.go"],
+    importpath = "github.com/google/shipshape/shipshape/util/kindex",
+    deps = ["//third_party/kythe/go/platform/kindex"],
 )
