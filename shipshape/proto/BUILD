@@ -1,3 +1,7 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@io_bazel_rules_go//proto:compiler.bzl", "go_proto_compiler")
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+
 # Copyright 2015 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,27 +18,19 @@
 
 package(default_visibility = ["//shipshape:default_visibility"])
 
-load("/tools/build_rules/genproto", "proto_library")
-
 proto_library(
     name = "source_context_proto",
-    src = "source_context.proto",
-    gen_go = 1,
-    gen_java = 1,
+    srcs = ["source_context.proto"],
 )
 
 proto_library(
     name = "textrange_proto",
-    src = "textrange.proto",
-    gen_go = 1,
-    gen_java = 1,
+    srcs = ["textrange.proto"],
 )
 
 proto_library(
     name = "note_proto",
-    src = "note.proto",
-    gen_go = 1,
-    gen_java = 1,
+    srcs = ["note.proto"],
     deps = [
         ":source_context_proto",
         ":textrange_proto",
@@ -43,9 +39,7 @@ proto_library(
 
 proto_library(
     name = "shipshape_context_proto",
-    src = "shipshape_context.proto",
-    gen_go = 1,
-    gen_java = 1,
+    srcs = ["shipshape_context.proto"],
     deps = [
         ":source_context_proto",
 #        "//third_party/kythe/proto:analysis_proto",
@@ -54,9 +48,7 @@ proto_library(
 
 proto_library(
     name = "shipshape_rpc_proto",
-    src = "shipshape_rpc.proto",
-    gen_go = 1,
-    gen_java = 1,
+    srcs = ["shipshape_rpc.proto"],
     deps = [
         ":note_proto",
         ":shipshape_context_proto",
@@ -65,16 +57,12 @@ proto_library(
 
 proto_library(
     name = "shipshape_config_proto",
-    src = "shipshape_config.proto",
-    gen_go = 1,
-    gen_java = 1,
+    srcs = ["shipshape_config.proto"],
 )
 
 proto_library(
     name = "shipshape_reporter_proto",
-    src = "shipshape_reporter.proto",
-    gen_go = 1,
-    gen_java = 1,
+    srcs = ["shipshape_reporter.proto"],
     deps = [
         ":note_proto",
         ":shipshape_context_proto",
