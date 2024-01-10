@@ -63,6 +63,7 @@ go_binary(
         "//shipshape/proto:shipshape_rpc_go_proto",
         "//shipshape/util/rpc/server",
         "//shipshape/util/strings",
+        "@com_github_golang_protobuf//proto:go_default_library",
     ],
 )
 

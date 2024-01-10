@@ -259,7 +259,7 @@ final class CheckstyleUtils {
             String elementName) throws SAXException {
       String value = attributes.getValue(attributeName);
       if (value == null) {
-        throw new SAXException(String.format("Element file missing attribute name", elementName));
+        throw new SAXException(String.format("Element file missing attribute name %s", elementName));
       }
       return value;
     }

@@ -32,6 +32,13 @@ go_repository(
     version = "v2.4.0",
 )
 
+go_repository(
+    name = "com_github_golang_protobuf",
+    importpath = "github.com/golang/protobuf",
+    sum = "h1:KhyjKVUg7Usr/dYsdSqoFveMYd5ko72D+zANwlG1mmg=",
+    version = "v1.5.3",
+)
+
 go_rules_dependencies()
 
 GO_SDK_VERSION = "1.21.5"
