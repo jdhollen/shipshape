@@ -25,8 +25,8 @@ go_library(
     deps = [
         "//third_party/kythe/go/platform/analysis",
         "//third_party/kythe/go/platform/delimited",
+        "//third_party/kythe/proto:analysis_go_proto",
         "@com_github_golang_protobuf//proto:go_default_library",
-        "@com_github_google_shipshape//third_party/kythe/proto/analysis_proto:go_default_library",
     ],
 )
 
@@ -35,8 +35,8 @@ go_test(
     srcs = ["kindex_test.go"],
     embed = [":kindex"],
     deps = [
+        "//third_party/kythe/proto:analysis_go_proto",
+        "//third_party/kythe/proto:storage_go_proto",
         "@com_github_golang_protobuf//proto:go_default_library",
-        "@com_github_google_shipshape//third_party/kythe/proto/analysis_proto:go_default_library",
-        "@com_github_google_shipshape//third_party/kythe/proto/storage_proto:go_default_library",
     ],
 )

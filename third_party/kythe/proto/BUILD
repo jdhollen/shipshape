@@ -21,7 +21,7 @@ licenses(["notice"])  # Apache 2.0
 
 proto_library(
     name = "any_proto",
-    src = "any.proto",
+    srcs = ["any.proto"],
 )
 
 go_proto_library(
@@ -37,7 +37,7 @@ java_proto_library(
 
 proto_library(
     name = "storage_proto",
-    src = "storage.proto",
+    srcs = ["storage.proto"],
 )
 
 go_proto_library(
@@ -53,7 +53,7 @@ java_proto_library(
 
 proto_library(
     name = "analysis_proto",
-    src = "analysis.proto",
+    srcs = ["analysis.proto"],
     deps = [
         ":any_proto",
         ":storage_proto",
@@ -63,7 +63,7 @@ proto_library(
 go_proto_library(
     name = "analysis_go_proto",
     importpath = "github.com/google/shipshape/third_party/kythe/proto/analysis_proto",
-    proto = ":shipshape_reporter_proto",
+    proto = ":analysis_proto",
     deps = [
         ":any_go_proto",
         ":storage_go_proto",

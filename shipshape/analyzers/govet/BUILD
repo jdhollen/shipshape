@@ -28,14 +28,15 @@ go_library(
     ],
 )
 
+# XXX
 go_test(
     name = "govet_test",
     srcs = ["govet_analyzer_test.go"],
     data = [
-        "//shipshape/shipshape/analyzers/govet/testdata/has_errors.go",
-        "//shipshape/shipshape/analyzers/govet/testdata/no_errors.go",
-        "//tools/go",
-        "//tools/go:GOROOT",
+        "//shipshape/analyzers/govet/testdata:has_errors.go",
+        "//shipshape/analyzers/govet/testdata:no_errors.go",
+        # "//tools/go",
+        # "//tools/go:GOROOT",
     ],
     embed = [":govet"],
     deps = [
