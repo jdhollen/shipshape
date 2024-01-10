@@ -1,5 +1,5 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
 load("@rules_proto//proto:defs.bzl", "proto_library")
-load("@io_bazel_rules_go//proto:compiler.bzl", "go_proto_compiler")
 load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 
 # Copyright 2015 Google Inc. All rights reserved.
@@ -67,4 +67,10 @@ proto_library(
         ":note_proto",
         ":shipshape_context_proto",
     ],
+)
+
+go_proto_library(
+    name = "source_context_go_proto",
+    importpath = "github.com/buildbuddy-io/shipshape/shipshape/proto/source_context",
+    proto = ":source_context_proto",
 )
