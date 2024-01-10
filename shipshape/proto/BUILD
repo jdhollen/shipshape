@@ -23,9 +23,21 @@ proto_library(
     srcs = ["source_context.proto"],
 )
 
+go_proto_library(
+    name = "source_context_go_proto",
+    importpath = "github.com/google/shipshape/shipshape/proto/source_context",
+    proto = ":source_context_proto",
+)
+
 proto_library(
     name = "textrange_proto",
     srcs = ["textrange.proto"],
+)
+
+go_proto_library(
+    name = "textrange_go_proto",
+    importpath = "github.com/google/shipshape/shipshape/proto/textrange",
+    proto = ":textrange_proto",
 )
 
 proto_library(
@@ -37,6 +49,16 @@ proto_library(
     ],
 )
 
+go_proto_library(
+    name = "note_go_proto",
+    importpath = "github.com/google/shipshape/shipshape/proto/note",
+    proto = ":note_proto",
+    deps = [
+        ":source_context_go_proto",
+        ":textrange_go_proto",
+    ]
+)
+
 proto_library(
     name = "shipshape_context_proto",
     srcs = ["shipshape_context.proto"],
@@ -44,6 +66,15 @@ proto_library(
         ":source_context_proto",
 #        "//third_party/kythe/proto:analysis_proto",
     ],
+)
+
+go_proto_library(
+    name = "shipshape_context_go_proto",
+    importpath = "github.com/google/shipshape/shipshape/proto/shipshape_context",
+    proto = ":shipshape_context_proto",
+    deps = [
+        ":source_context_go_proto",
+    ]
 )
 
 proto_library(
@@ -55,9 +86,25 @@ proto_library(
     ],
 )
 
+go_proto_library(
+    name = "shipshape_rpc_go_proto",
+    importpath = "github.com/google/shipshape/shipshape/proto/shipshape_rpc",
+    proto = ":shipshape_rpc_proto",
+    deps = [
+        ":note_go_proto",
+        ":shipshape_context_go_proto",
+    ]
+)
+
 proto_library(
     name = "shipshape_config_proto",
     srcs = ["shipshape_config.proto"],
+)
+
+go_proto_library(
+    name = "shipshape_config_go_proto",
+    importpath = "github.com/google/shipshape/shipshape/proto/shipshape_config",
+    proto = ":shipshape_config_proto",
 )
 
 proto_library(
@@ -70,7 +117,11 @@ proto_library(
 )
 
 go_proto_library(
-    name = "source_context_go_proto",
-    importpath = "github.com/buildbuddy-io/shipshape/shipshape/proto/source_context",
-    proto = ":source_context_proto",
+    name = "shipshape_reporter_proto_go_proto",
+    importpath = "github.com/google/shipshape/shipshape/proto/shipshape_reporter_proto",
+    proto = ":shipshape_reporter_proto",
+    deps = [
+        ":note_go_proto",
+        ":shipshape_context_go_proto",
+    ],
 )
