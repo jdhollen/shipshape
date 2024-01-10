@@ -25,6 +25,7 @@ proto_library(
 
 go_proto_library(
     name = "test_go_proto",
+    importpath = "github.com/google/shipshape/shipshape/util/rpc/server/test_proto",
     proto = ":test_proto",
 )
 
@@ -46,6 +47,6 @@ go_test(
     srcs = ["krpc_test.go"],
     embed = [":server"],
     deps = [
-        "@com_github_google_shipshape//shipshape/util/rpc/server:test_go_proto",
+        ":test_go_proto",
     ],
 )

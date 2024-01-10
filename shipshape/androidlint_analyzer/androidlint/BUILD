@@ -53,4 +53,11 @@ go_binary(
 #         "//shipshape/util/test",
 #     ],
 # )
- 
+
+go_test(
+    name = "androidlint_test",
+    srcs = ["analyzer_test.go"],
+    data = glob(["testdata/**"]),
+    embed = [":androidlint"],
+    deps = ["//shipshape/util/test"],
+)

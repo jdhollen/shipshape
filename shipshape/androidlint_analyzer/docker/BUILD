@@ -14,7 +14,7 @@
 
 package(default_visibility = ["//shipshape:default_visibility"])
 
-# XXX: 
+# XXX:
 # docker_build(
 #     name = "android_lint",
 #     src = "Dockerfile",
