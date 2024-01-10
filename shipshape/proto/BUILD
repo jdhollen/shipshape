@@ -28,6 +28,11 @@ go_proto_library(
     proto = ":source_context_proto",
 )
 
+java_proto_library(
+    name = "source_context_proto_java",
+    deps = [":source_context_proto"],
+)
+
 proto_library(
     name = "textrange_proto",
     srcs = ["textrange.proto"],
@@ -37,6 +42,11 @@ go_proto_library(
     name = "textrange_go_proto",
     importpath = "github.com/google/shipshape/shipshape/proto/textrange_proto",
     proto = ":textrange_proto",
+)
+
+java_proto_library(
+    name = "textrange_proto_java",
+    deps = [":textrange_proto"],
 )
 
 proto_library(
@@ -58,6 +68,11 @@ go_proto_library(
     ],
 )
 
+java_proto_library(
+    name = "note_proto_java",
+    deps = [":note_proto"],
+)
+
 proto_library(
     name = "shipshape_context_proto",
     srcs = ["shipshape_context.proto"],
@@ -74,6 +89,11 @@ go_proto_library(
     deps = [
         ":source_context_go_proto",
     ],
+)
+
+java_proto_library(
+    name = "shipshape_context_proto_java",
+    deps = [":shipshape_context_proto"],
 )
 
 proto_library(
@@ -95,6 +115,11 @@ go_proto_library(
     ],
 )
 
+java_proto_library(
+    name = "shipshape_rpc_proto_java",
+    deps = [":shipshape_rpc_proto"],
+)
+
 proto_library(
     name = "shipshape_config_proto",
     srcs = ["shipshape_config.proto"],
@@ -104,6 +129,11 @@ go_proto_library(
     name = "shipshape_config_go_proto",
     importpath = "github.com/google/shipshape/shipshape/proto/shipshape_config_proto",
     proto = ":shipshape_config_proto",
+)
+
+java_proto_library(
+    name = "shipshape_config_proto_java",
+    deps = [":shipshape_config_proto"],
 )
 
 proto_library(
@@ -123,4 +153,9 @@ go_proto_library(
         ":note_go_proto",
         ":shipshape_context_go_proto",
     ],
+)
+
+java_proto_library(
+    name = "shipshape_reporter_proto_java",
+    deps = [":shipshape_reporter_proto"],
 )

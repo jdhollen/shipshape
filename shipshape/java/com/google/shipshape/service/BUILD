@@ -39,7 +39,6 @@ java_library(
         "//third_party/kythe/java/com/google/devtools/kythe/common",
         "//third_party/kythe/proto:analysis_proto_java",
         "//third_party/openjdk:tools_jar",
-        "//third_party/proto:protobuf_java",
     ],
 )
 
