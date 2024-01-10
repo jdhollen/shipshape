@@ -30,5 +30,6 @@ java_library(
         "//third_party/kythe/java/com/google/devtools/kythe/common",
         "//third_party/kythe/proto:analysis_proto_java",
         "//third_party/kythe/proto:storage_proto_java",
+        "@com_google_protobuf//:protobuf_java",
     ],
 )

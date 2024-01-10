@@ -57,3 +57,63 @@ load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_
 rules_proto_dependencies()
 
 rules_proto_toolchains()
+
+# Proto -- must be before container_repositories so we don't inherit their rules_pkg.
+
+# NB: The name must be "com_google_protobuf".
+
+# Required by com_google_protobuf
+http_archive(
+    name = "com_google_googletest",
+    sha256 = "730215d76eace9dd49bf74ce044e8daa065d175f1ac891cc1d6bb184ef94e565",
+    strip_prefix = "googletest-f53219cdcb7b084ef57414efea92ee5b71989558",
+    urls = [
+        "https://github.com/google/googletest/archive/f53219cdcb7b084ef57414efea92ee5b71989558.tar.gz",
+    ],
+)
+
+load("@com_google_googletest//:googletest_deps.bzl", "googletest_deps")
+
+googletest_deps()
+
+http_archive(
+    name = "com_google_protobuf",
+    sha256 = "616bb3536ac1fff3fb1a141450fa28b875e985712170ea7f1bfe5e5fc41e2cd8",
+    strip_prefix = "protobuf-24.4",
+    urls = ["https://github.com/protocolbuffers/protobuf/releases/download/v24.4/protobuf-24.4.tar.gz"],
+)
+
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+
+protobuf_deps()
+
+# Docker
+
+http_archive(
+    name = "io_bazel_rules_docker",
+    sha256 = "b1e80761a8a8243d03ebca8845e9cc1ba6c82ce7c5179ce2b295cd36f7e394bf",
+    urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.25.0/rules_docker-v0.25.0.tar.gz"],
+)
+
+load(
+    "@io_bazel_rules_docker//toolchains/docker:toolchain.bzl",
+    docker_toolchain_configure = "toolchain_configure",
+)
+
+docker_toolchain_configure(
+    name = "docker_config",
+)
+
+load(
+    "@io_bazel_rules_docker//repositories:repositories.bzl",
+    container_repositories = "repositories",
+)
+
+container_repositories()
+
+load(
+    "@io_bazel_rules_docker//go:image.bzl",
+    _go_image_repos = "repositories",
+)
+
+_go_image_repos()
